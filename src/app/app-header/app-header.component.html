@@ -1,0 +1,64 @@
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+<div *ngIf="state">
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo"><a href="/contactlist">Book</a></h1>
+
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="/contactlist">Home</a></li>
+        <li><a [routerLink]="['/createContact']" routerLinkActive="router-link-active" class="nav-link scrollto" >Create Contact</a></li>
+        <li><a [routerLink]="['/contactlist']" routerLinkActive="router-link-active" class="nav-link scrollto" >Contact List</a></li>
+        <li><a [routerLink]="['/']" routerLinkActive="router-link-active" class="nav-link scrollto" (click)="logout()" > Logout &nbsp; &nbsp; <span> {{username}} </span> </a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header>
+
+<!-- <div class="container-fluid" style="position :absolute; top:18%; " >
+  <h3 style="font-family: 'DM Sans', sans-serif; font-size: 35px;">Contacts</h3>
+</div>
+<div class="container-fluid" style="margin-top: 2%; position: absolute; top:28%;">
+  <div class="row" style=" width:99.5%; margin-left: 0.1em; ">
+    <div class="container col-md-3" style=" background: linear-gradient(to right, #66ffcc 0%, #66ffff 100%);" *ngFor="let x of contact"><br>
+        <div>
+            <div class="card-deck">
+                <div class="card" >
+                    <div class="card-body">
+                        <h5 class="card-title" style=" font-family: 'Reggae One', cursive; font-size: 28px;" >{{x.name}}</h5>
+                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size : 20px ">{{x.email}} </p>
+                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size: 22px;" >{{x.mobile}} </p>
+                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif;"  >{{x.address}} </p>
+                        <button type="button" style="background-color: crimson; color: blanchedalmond;" (click)="deleteContact(x.id)" class="btn btn-default btn-sm">
+                          <span class="glyphicon glyphicon-trash"></span> Delete
+                        </button> &nbsp;
+                         <button type="button" style="background-color:#4dff88; color:black" class="btn btn-default btn-sm">
+                          <span class="glyphicon glyphicon-trash"></span> Edit
+                        </button>
+                        <!-- <p class="card-text">Trasg<span class="glyphicon glyphicon-trash"></span></p> -->
+                        <!-- <button class="btn btn-dark"></button><button class="btn btn-dark"></button> -->
+                    <!-- </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div> --> -->
+</div>

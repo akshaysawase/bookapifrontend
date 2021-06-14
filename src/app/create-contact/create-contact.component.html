@@ -1,0 +1,77 @@
+
+<app-app-header></app-app-header>
+<h3 style=" margin-top:100px;" *ngIf= "enableEdit">Update Contact</h3>
+<h3 style=" margin-top:100px;" *ngIf= "!enableEdit">Add Contact</h3>
+
+
+<div class="container" style="margin-top:30px;">
+  <form [formGroup]="addContact"  >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="first">First Name</label>
+          <input type="text" class="form-control" formControlName="firstname"  placeholder="Name" id="first">
+          <div class="text-danger" *ngIf="addContact.controls.firstname.invalid && (addContact.controls.firstname.dirty || addContact.controls.firstname.touched)">
+            <div *ngIf="addContact.controls.firstname.errors.required">
+              Please Enter Valid Name
+          </div>
+          </div>
+        </div>
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="last">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Email" id="emailid">
+          <div class="text-danger" *ngIf="addContact.controls.email.invalid && (addContact.controls.email.dirty || addContact.controls.email.touched)">
+            <div *ngIf="addContact.controls.email.errors.required">
+              Please Enter Valid Email
+          </div>
+          </div>
+        </div>
+      </div>
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="last">Mobile No</label>
+          <input type="number" class="form-control" formControlName="mobile" placeholder="Mobile" id="mobile">
+          <div class="text-danger" *ngIf="addContact.controls.mobile.invalid && (addContact.controls.mobile.dirty || addContact.controls.mobile.touched)">
+            <div *ngIf="addContact.controls.mobile.errors.required">
+              Please Enter Valid Mobile
+          </div>
+          <div *ngIf="addContact.controls.mobile.errors.pattern">
+              Mobile Number is NOT Valid.
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="last">Address</label>
+          <input type="text" class="form-control" formControlName="address" placeholder="Address" id="address">
+          <div class="text-danger" *ngIf="addContact.controls.address.invalid && (addContact.controls.address.dirty || addContact.controls.address.touched)">
+            <div *ngIf="addContact.controls.address.errors.required">
+              Please Enter Valid Address
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" (click)="onSubmit()" *ngIf="!enableUpdate" >Save</button>
+          <button type="submit" class="btn btn-success" *ngIf = "enableUpdate" (click)="onUpdate()" >Update</button>
+          <p *ngIf = "enableUpdate" class="text-danger">Note : Don't Refresh the page before updating...</p>
+        </div>
+      </div>
+
+    </div>
+  </form>
+  </div>
+
+
+
+

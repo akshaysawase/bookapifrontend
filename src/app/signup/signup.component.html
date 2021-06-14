@@ -1,0 +1,155 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo" ><a href="#">Book</a></h1>
+
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+        <li><a [routerLink]="['/login']" routerLinkActive="router-link-active" class="nav-link scrollto" >Sign In</a></li>
+        <li><a [routerLink]="['/signup']" routerLinkActive="router-link-active" class="nav-link scrollto" >Sign Up</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+<!-- Navbar-->
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-light py-3">
+      <div class="container">
+          <!-- Navbar Brand -->
+          <a href="#" class="navbar-brand">
+
+          </a>
+      </div>
+  </nav>
+</header>
+
+
+<div class="container">
+  <div class="row py-5 mt-4 align-items-center">
+      <!-- For Demo Purpose -->
+      <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+          <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+          <h1>Create an Account</h1>
+
+      </div>
+
+      <!-- Registeration Form -->
+      <div class="col-md-7 col-lg-6 ml-auto">
+          <form action="#" [formGroup]="signUpForm">
+              <div class="row">
+
+                <!-- other login field -->
+
+                <!-- <div class="form-group mb-3">
+                  <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+              </div> -->
+
+                  <!-- First Name -->
+                  <div class="input-group col-lg-6 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-user text-muted"></i>
+                          </span>
+                      </div>
+                      <input required id="firstName" type="text" name="firstname" formControlName="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+                      <div class="text-danger" *ngIf="signUpForm.controls.firstname.invalid && (signUpForm.controls.firstname.dirty || signUpForm.controls.firstname.touched)">
+                        <div *ngIf="signUpForm.controls.firstname.errors.required">
+                          **
+                      </div>
+                      </div>
+                  </div>
+
+                  <!-- Last Name -->
+                  <div class="input-group col-lg-6 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-user text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="lastName" type="text" required name="lastname" formControlName="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
+                      <div class="text-danger" *ngIf="signUpForm.controls.lastname.invalid && (signUpForm.controls.lastname.dirty || signUpForm.controls.lastname.touched)">
+                        <div *ngIf="signUpForm.controls.lastname.errors.required">
+                          **
+                      </div>
+                      </div>
+                  </div>
+
+                  <!-- Email Address -->
+                  <div class="input-group col-lg-12 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-envelope text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="email" type="email" formControlName="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                      <div class="text-danger" *ngIf="signUpForm.controls.email.invalid && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)">
+                        <div *ngIf="signUpForm.controls.email.errors.required">
+                          **
+                      </div>
+                      </div>
+                  </div>
+
+
+                  <!-- Password -->
+                  <div class="input-group col-lg-6 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-lock text-muted"></i>
+                          </span>
+                      </div>
+                      <input required id="password" type="password" formControlName="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                      <div class="text-danger" *ngIf="signUpForm.controls.password.invalid && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched)">
+                        <div *ngIf="signUpForm.controls.password.errors.required">
+                          **
+                      </div>
+                      <div *ngIf="signUpForm.controls.password.errors.pattern" class="text-danger">
+                          **
+                      </div>
+                      </div>
+                  </div>
+
+                  <!-- Password Confirmation -->
+                  <div class="input-group col-lg-6 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-lock text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="passwordConfirmation" type="password" formControlName="confirmPassword" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                      <div class="text-danger" *ngIf="signUpForm.controls.confirmPassword.invalid && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched)">
+                        <div *ngIf="signUpForm.controls.confirmPassword.errors.required">
+                          **
+                      </div>
+                      </div>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div class="form-group col-lg-12 mx-auto mb-0">
+                      <a (click)="onSubmit()" class="btn btn-primary btn-block py-2">
+                          <span class="font-weight-bold" style="color:antiquewhite;">Sign Up </span>
+                      </a>
+                  </div>
+                    <br><br><br>
+
+
+
+
+                  <!-- Already Registered -->
+                  <div class="text-center w-100">
+                      <p class="text-muted font-weight-bold">Already Registered? <a routerLink="/login" >Login</a></p>
+                  </div>
+
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<h3>{{success}}</h3>
+<router-outlet></router-outlet>
+
+
