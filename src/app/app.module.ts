@@ -13,6 +13,8 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { CreateContactComponent } from './create-contact/create-contact.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
+// import { AlertComponent } from './alert/alert.component';
+import { AlertModule } from './alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -23,14 +25,16 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
     ContactListComponent,
     AppHeaderComponent,
     CreateContactComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    // AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AlertModule
   ],
   providers: [],
   bootstrap: [AppComponent],
