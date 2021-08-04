@@ -27,7 +27,18 @@
       </div>
   </nav>
 </header>
-
+<div class="alert alert-success" *ngIf="show" style="z-index: 999;margin-top: 40px; ">
+  <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Registered Successfully ! Please Log in !
+</div>
+<div class="alert alert-danger" *ngIf="error" style="z-index: 999; margin-top: 40px;">
+  <a href="/signup" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Failed!</strong> Password and Confirm Password Does Not Match
+</div>
+<div class="alert alert-danger" *ngIf="invalid" style="z-index: 999; margin-top: 40px;">
+  <a href="/signup" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Failed!</strong> Please Fill Up Required Field !
+</div>
 
 <div class="container">
   <div class="row py-5 mt-4 align-items-center">

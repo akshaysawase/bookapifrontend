@@ -16,6 +16,9 @@ export class SignupComponent implements OnInit {
   signUpForm : FormGroup;
   submitted = false;
   success = "";
+  public show = false;
+  public error = false;
+  public invalid = false;
 
   ngOnInit(): void {
     this.signUpForm = this.formbuilder.group({
@@ -32,21 +35,18 @@ export class SignupComponent implements OnInit {
     return this.signUpForm.controls;
   }
 
-  showAlert(){
-    alert(this.success)
-  }
 
   onSubmit(){
 
     this.submitted = true;
     if(this.signUpForm.invalid){
       console.log("Aye ! Nit Bhar...");
-      alert("Please Fill up Completely !");
+      this.invalid = true;
       return;
     }
     if(this.f.password.value !== this.f.confirmPassword.value){
       console.log("Password and Confirm Password Does Not Match");
-      alert("Password and Confirm Password Does Not Match");
+      this.error = true;
       return;
     }
 
@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
 
   this.api.signUp(signUp).subscribe(res=>{
       this.success = res.success;
-      alert("You're Registered Successfully ! Please Log in");
+      this.show = true;
   },(err)=>{
     console.log("Error In OnSubmit "+err);
   }

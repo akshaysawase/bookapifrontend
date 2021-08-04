@@ -17,6 +17,9 @@ export class CreateContactComponent implements OnInit {
   successMsg : string = "";
   contact = {};
   enableUpdate = false;
+  countryName = [];
+  updateCountry;
+
   conid : number =0;
   enableEdit : boolean =false ;
 
@@ -26,7 +29,7 @@ export class CreateContactComponent implements OnInit {
     this.enableEdit = Boolean(localStorage.getItem('enableedit'));
 
     this.conid = parseInt(cid);
-    console.log(cid);
+
 
     if(typeof(cid)==undefined || cid == null || cid == '' ){
       this.enableUpdate = false;
@@ -34,7 +37,8 @@ export class CreateContactComponent implements OnInit {
         firstname : ['', Validators.required, Validators.minLength(2)],
         email : ['', [Validators.email, Validators.required]],
         mobile : ['', [Validators.required, Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]],
-        address : ['' , [Validators.required]]
+        address : ['' , [Validators.required]],
+        country : ['', [Validators.required]]
       });
     }else if(cid){
       console.log("inside conid");
@@ -46,9 +50,11 @@ export class CreateContactComponent implements OnInit {
             firstname : res.contact[0].name,
             email : res.contact[0].email,
             mobile : res.contact[0].mobile,
-            address : res.contact[0].address
+            address : res.contact[0].address,
+            country : res.contact[0].country
           });
           this.enableUpdate = true;
+          this.updateCountry = res.contact[0].country;
           console.log(res.contact[0].name);
         },
         err =>{
@@ -67,10 +73,10 @@ export class CreateContactComponent implements OnInit {
 
     this.submitted = true;
 
-    if(this.addContact.invalid){
+    if(this.addContact.invalid || this.f.country.value == null){
       console.log("Form Is Invalid..");
       alert("Please Enter Valid Contact Details");
-      return;
+      return false;
     }
 
     let contact = {
@@ -78,6 +84,7 @@ export class CreateContactComponent implements OnInit {
       email : this.f.email.value,
       mobile : this.f.mobile.value,
       address: this.f.address.value,
+      country: this.f.country.value,
       isDeleted : false,
       image : null,
       createdBy : localStorage.getItem('id'),
@@ -99,12 +106,18 @@ export class CreateContactComponent implements OnInit {
 
 
 
+  getCountries(){
+
+    return this.countryName = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+  }
+
+
 
 
 
   onUpdate(){
 
-    if(this.addContact.invalid){
+    if(this.addContact.invalid || this.f.country.value==null){
       console.log("Form Is Invalid..");
       alert("Please Enter Valid Contact Details");
       return;
@@ -115,6 +128,7 @@ export class CreateContactComponent implements OnInit {
       email : this.f.email.value,
       mobile : this.f.mobile.value,
       address: this.f.address.value,
+      country: this.f.country.value,
       id : this.conid
     }
 

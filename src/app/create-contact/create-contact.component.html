@@ -1,10 +1,10 @@
 
 <app-app-header></app-app-header>
-<h3 style=" margin-top:100px;" *ngIf= "enableEdit">Update Contact</h3>
-<h3 style=" margin-top:100px;" *ngIf= "!enableEdit">Add Contact</h3>
+<h3 style=" margin-top:100px;" *ngIf= "enableEdit" class="update">Update Contact</h3>
+<h3 style=" margin-top:100px;" *ngIf= "!enableEdit" class="create">New Contact</h3>
 
 
-<div class="container" style="margin-top:30px;">
+<div class="container formcreate">
   <form [formGroup]="addContact"  >
     <div class="row">
       <div class="col-md-6">
@@ -60,6 +60,31 @@
         </div>
       </div>
 
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Country">Country</label>
+          <select class="form-select" formControlName="country" aria-label="Default select example" (click)="getCountries()" >
+            <option selected value="">Select Your Country</option>
+            <option selected *ngIf="enableUpdate" value="{{updateCountry}}">{{updateCountry}}</option>
+            <option value="{{name}}" *ngFor="let name of countryName">{{name}}</option>
+
+
+
+          </select>
+          <div class="text-danger" *ngIf="addContact.controls.country.invalid && (addContact.controls.country.dirty || addContact.controls.country.touched)">
+            <div *ngIf="addContact.controls.country.errors.required">
+              Please Select Your Country
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+      </div>
+
+
       <div class="col-md-6">
         <div class="form-group">
           <button type="submit" class="btn btn-success" (click)="onSubmit()" *ngIf="!enableUpdate" >Save</button>
@@ -67,11 +92,20 @@
           <p *ngIf = "enableUpdate" class="text-danger">Note : Don't Refresh the page before updating...</p>
         </div>
       </div>
+<!--
+      <div class="col-md-6">
+
+      </div> -->
+
 
     </div>
   </form>
   </div>
 
+
+  <!-- <ul *ngFor="name in country">
+    <li>{{name.name}}</li>
+  </ul> -->
 
 
 

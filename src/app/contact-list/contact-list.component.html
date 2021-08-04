@@ -1,36 +1,105 @@
 <app-app-header></app-app-header>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
 <!-- <h3>Works</h3> -->
 
-<div *ngIf = "contact.length==0">
-    <h5 style="margin-top:40%; text-align: center; color:brown;">No Contacts Found ! Please Create Some Contacts</h5>
+<div *ngIf="contact.length==0">
+    <h5 style="margin-top:40%; text-align: center; color:#B9FFFC;">No Contacts Found :( Please Create Some Contacts</h5>
 </div>
 
-<div class="container-fluid" style="position :absolute; top:18%; " >
-  <h3 style="font-family: 'DM Sans', sans-serif; font-size: 35px;">Contacts</h3>
+
+
+
+<div class="container searchbar" style="margin-top: 10.5rem;" *ngIf="notFound">
+  <input type="search" class="form-control" [(ngModel)]="searchText" placeholder="Search Contact" style=" font-family: 'Quicksand', sans-serif; font-size : 20px; letter-spacing: 0.3px; text-align: center; border-radius:25px;" name="searchbox" >
+  <img src="../../assets/img/mic.png" class="voice" width="25" *ngIf="voiceActiveSectionDisabled; else voicesection;" (click)="startVoiceRecognition()" height="25" data-toggle="tooltip" title="Speak" alt="">
 </div>
-<div class="container-fluid" style="margin-top: 2%; position: absolute; top:28%;">
+
+
+<div class="container-fluid contactlist" style="margin-top:6%; position: absolute; top:26%;">
+  <ng-container *ngIf="(contact | filter : voiceText || searchText) as result">
   <div class="row" style=" width:99.5%; margin-left: 0.1em; ">
-    <div class="container col-md-3" style=" background: linear-gradient(to right, #66ffcc 0%, #66ffff 100%);" *ngFor="let x of contact"><br>
+    <div class="container col-md-3" *ngFor="let x of result"><br>
         <div>
             <div class="card-deck">
-                <div class="card" >
-                    <div class="card-body">
-                        <h5 class="card-title" style=" font-family: 'Reggae One', cursive; font-size: 28px;" >{{x.name}}</h5>
-                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size : 20px ">{{x.email}} </p>
-                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size: 22px;" >{{x.mobile}} </p>
-                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif;"  >{{x.address}} </p>
-                        <button type="button" style="background-color: crimson; color: blanchedalmond;" (click)="deleteContact(x.id)" class="btn btn-default btn-sm">
-                          <span class="glyphicon glyphicon-trash"></span> Delete
-                        </button> &nbsp;
-                         <button type="button" style="background-color:#4dff88; color:black" class="btn btn-default btn-sm" (click)="getContact(x.id)" >
-                          <span class="glyphicon glyphicon-trash"></span> Edit
-                        </button>
-                        <!-- <p class="card-text">Trasg<span class="glyphicon glyphicon-trash"></span></p> -->
-                        <!-- <button class="btn btn-dark"></button><button class="btn btn-dark"></button> -->
+                <div class="card contact" >
+                    <div class="card-body" style="background-color: #B9FFFC;">
+                        <h5 class="card-title" style=" font-family: 'Reggae One', cursive; font-size: 28px;" > <span><img src="../../assets/img/man.png" alt="" data-toggle="tooltip" title="{{x.name}}" width="26" height="26"></span>  {{x.name}}</h5>
+                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size : 20px ">  <span><img src="../../assets/img/gmail.png" alt="" data-toggle="tooltip" title="Email " width="16" height="16"></span> &nbsp;&nbsp; {{x.email}} </p>
+                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size: 22px;"> <span><img src="../../assets/img/phone.png" alt="" data-toggle="tooltip" title="Mobile " width="16" height="16"></span> &nbsp;&nbsp; {{x.mobile}} </p>
+                        <p class="card-text" style=" font-family: 'Quicksand', sans-serif;"><span><img src="../../assets/img/google-maps.png" data-toggle="tooltip" title="Location" alt="" width="16" height="16"></span> &nbsp;&nbsp;&nbsp; {{x.country}} </p>
+
+                        <img src="../../assets/img/trash-bin.png" width="22" height="22" alt="" data-toggle="tooltip" title="Delete Contact" (click)="showDelete(delete)">
+
+                        &nbsp;&nbsp;&nbsp;
+                        <img src="../../assets/img/edit.png" width="22" height="22" alt="" data-toggle="tooltip" title="Edit Contact" (click)="getContact(x.id)">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div *ngIf="result.length === 0" style="color:#B9FFFC; text-align: center;">
+  <h6 style="text-align : center; margin-top: 30px; font-family: 'Baloo 2', cursive; font-size: 25px;"> No Contacts Found :( </h6>
+
+ </div>
+</ng-container>
 </div>
+
+
+<!-- <div class="container" style="margin-top: 10.5%; border:1px solid red;"> -->
+  <!-- <input type="search" class="form-control" [(ngModel)]="searchText" placeholder="Search Contact" style=" font-family: 'Quicksand', sans-serif; font-size : 20px; letter-spacing: 1.2px; text-align: center; border-radius:25px;" name="searchbox" >
+  <img src="../../assets/img/mic.png" style=" position: absolute; right:28rem; top:11.1rem;" width="25" *ngIf="voiceActiveSectionDisabled; else voicesection;" (click)="startVoiceRecognition()" height="25" data-toggle="tooltip" title="Speak" alt=""> -->
+
+  <!-- <div *ngIf="voiceActiveSectionDisabled; else voicesection;"> -->
+    <!-- <button type="button" class="btn btn-dark" (click)="startVoiceRecognition()">Record</button> -->
+  <!-- </div> -->
+  <ng-template #voicesection>
+    <ng-container
+      *ngIf="!voiceActiveSectionError; else failure">
+      <ng-container
+        *ngIf="voiceText; else start">
+          <span class="voiceicons" >{{voiceText}}</span>
+      </ng-container>
+      <ng-template #start>
+        <ng-container
+          *ngIf="voiceActiveSectionListening; else beginning">
+          <span class="voiceicons">Listening ....</span>
+        </ng-container>
+        <ng-template #beginning>
+          <span class="voiceicons">Start talking...</span>
+        </ng-template>
+      </ng-template>
+    </ng-container>
+    <ng-template #failure>
+      <span>Didn't catch that</span>
+    </ng-template>
+    <div>
+      <!-- style="position: absolute; right:24rem; top:11.2rem;"  -->
+      <span (click)="closeVoiceRecognition()">
+        <img src="../../assets/img/cancel.png" class="cloesicon" width="23" height="23" alt="">
+      </span>
+      <!-- style="position: absolute; right:22rem; top:11.2rem;" -->
+      <span (click)="startVoiceRecognition()">
+        <img src="../../assets/img/reload.png" class="reloadicon" width="24" height="24" alt="">
+      </span>
+
+    </div>
+  </ng-template>
+
+<!-- </div> -->
+
+<ng-template #delete>
+  <div class="modal-body">
+    <h6>Do you want to Delete Contact ?</h6>
+  </div>
+  <div class="modal-footer text-center justify-content-end">
+    <button type="button" class="btn btn-success pull-left" (click)="confirmFinishProject()">Yes</button>
+    <button type="button" class="btn btn-danger" (click)="declineDeleteProject()">No</button>
+  </div>
+</ng-template>
+

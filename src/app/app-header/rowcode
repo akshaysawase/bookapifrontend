@@ -1,3 +1,83 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.border-md {
+  border-width: 2px;
+}
+
+.btn-facebook {
+  background: #405D9D;
+  border: none;
+}
+
+.btn-facebook:hover, .btn-facebook:focus {
+  background: #314879;
+}
+
+.btn-twitter {
+  background: #42AEEC;
+  border: none;
+}
+
+.btn-twitter:hover, .btn-twitter:focus {
+  background: #1799e4;
+}
+
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+  min-height: 100vh;
+}
+
+.form-control:not(select) {
+  padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+  height: 52px;
+  padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+  color: #ccc;
+  /* font-weight: bold; */
+  font-size: 0.9rem;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://res.cloudinary.com/mhmd/image/upload/v1555917661/art-colorful-contemporary-2047905_dxtao7.jpg');
+  background-size: cover;
+  background-position: center center;
+}
 /**
 * Template Name: Tempo - v4.1.0
 * Template URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
@@ -11,6 +91,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  /* background-color: #6c757d; */
 }
 
 a {
@@ -67,6 +148,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 20px 0;
+  background: linear-gradient(to bottom right, #33ccff 0%, #99ffcc 100%);
 }
 
 #header .logo {
@@ -77,10 +159,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
+  /* color:#b7b7b7; */
 }
 
 #header .logo a {
-  color: #fff;
+  color:#e6ffff;
   text-decoration: none;
 }
 
@@ -95,15 +178,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /*--------------------------------------------------------------
 # Navigation Menu
+
 --------------------------------------------------------------*/
 /**
 * Desktop Navigation
+
 */
 .navbar {
+
   padding: 0;
+
 }
 
 .navbar ul {
+
   margin: 0;
   padding: 0;
   display: flex;
@@ -112,20 +200,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar li {
+
   position: relative;
+
 }
 
 .navbar > ul > li {
+
   white-space: nowrap;
   padding: 10px 0 10px 24px;
+
 }
 
 .navbar a {
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: "Poppins", sans-serif;
-  color: #fff;
+  color: #493c3e;
   font-size: 15px;
   padding: 0 4px;
   white-space: nowrap;
@@ -135,12 +228,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar a i {
+
   font-size: 12px;
   line-height: 0;
   margin-left: 5px;
 }
 
 .navbar > ul > li > a:before {
+
   content: "";
   position: absolute;
   width: 100%;
@@ -154,15 +249,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar a:hover:before, .navbar li:hover > a:before, .navbar .active:before {
+
+
+
   visibility: visible;
   transform: scaleX(1);
 }
 
 .navbar a:hover, .navbar .active, .navbar li:hover > a {
-  color: #fff;
+
+
+
+  color: #111;
 }
 
 .navbar .dropdown ul {
+
   display: block;
   position: absolute;
   left: 24px;
@@ -178,10 +280,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar .dropdown ul li {
+
   min-width: 200px;
 }
 
 .navbar .dropdown ul a {
+
   padding: 10px 20px;
   font-size: 14px;
   text-transform: none;
@@ -189,26 +293,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar .dropdown ul a i {
+
   font-size: 12px;
 }
 
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+
+
+
   color: #e43c5c;
 }
 
 .navbar .dropdown:hover > ul {
+
   opacity: 1;
   top: 100%;
   visibility: visible;
 }
 
 .navbar .dropdown .dropdown ul {
+
   top: 0;
   left: calc(100% - 30px);
   visibility: hidden;
 }
 
 .navbar .dropdown .dropdown:hover > ul {
+
   opacity: 1;
   top: 0;
   left: 100%;
@@ -217,20 +328,24 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 1366px) {
   .navbar .dropdown .dropdown ul {
+
     left: -90%;
   }
   .navbar .dropdown .dropdown:hover > ul {
+
     left: -100%;
   }
 }
 
 /**
 * Mobile Navigation
+
 */
 .mobile-nav-toggle {
+
   color: #fff;
   font-size: 28px;
-  cursor:pointer;
+  cursor: pointer;
   display: none;
   line-height: 0;
   transition: 0.5s;
@@ -238,32 +353,17 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 991px) {
   .mobile-nav-toggle {
+
     display: block;
   }
   .navbar ul {
+
     display: none;
-
   }
-}
-.menu{
-  visibility: hidden;
-  width: 0;
-  height: 0;
-
-}
-@media (max-width: 800px){
-  .menu{
-    position: relative;
-    width: 4rem;
-    top:2rem;
-    height:5rem;
-    visibility: visible;
-
-  }
-
 }
 
 .navbar-mobile {
+
   position: fixed;
   overflow: hidden;
   top: 0;
@@ -276,12 +376,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-mobile .mobile-nav-toggle {
+
+
   position: absolute;
   top: 15px;
   right: 15px;
 }
 
 .navbar-mobile ul {
+
   display: block;
   position: absolute;
   top: 55px;
@@ -292,32 +395,41 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #fff;
   overflow-y: auto;
   transition: 0.3s;
-
 }
 
 .navbar-mobile > ul > li {
+
   padding: 0;
 }
 
 .navbar-mobile a:hover:before, .navbar-mobile li:hover > a:before, .navbar-mobile .active:before {
+
+
+
   visibility: hidden;
 }
 
 .navbar-mobile a {
+
   padding: 10px 20px;
   font-size: 15px;
   color: #493c3e;
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
+
+
+
   color: #e43c5c;
 }
 
 .navbar-mobile .getstarted {
+
   margin: 15px;
 }
 
 .navbar-mobile .dropdown ul {
+
   position: static;
   display: none;
   margin: 10px 20px;
@@ -330,22 +442,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-mobile .dropdown ul li {
+
   min-width: 200px;
 }
 
 .navbar-mobile .dropdown ul a {
+
   padding: 10px 20px;
 }
 
 .navbar-mobile .dropdown ul a i {
+
   font-size: 12px;
 }
 
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
+
+
+
   color: #e43c5c;
 }
 
 .navbar-mobile .dropdown > .dropdown-active {
+
   display: block;
 }
 
@@ -355,7 +474,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  /* background: url("../img/hero-bg.jpg") top center; */
   background-size: cover;
   position: relative;
 }
@@ -678,7 +797,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.8)), url("../img/cta-bg.jpg") center center;
+  /* background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.8)), url("../img/cta-bg.jpg") center center; */
   background-size: cover;
   padding: 60px 0;
 }
@@ -2001,3 +2120,6 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+
+<alert [position]="Position.TopCenter" [maxItems]="3" [isGlobal]="true" [queueAlerts]= "true"></alert>

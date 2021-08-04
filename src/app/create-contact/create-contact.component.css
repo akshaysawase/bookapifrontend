@@ -1,0 +1,34 @@
+.formcreate{
+  /* margin-top:100px; */
+  /* box-shadow: 10px 5px 10px 5px #DEF; */
+  background-color: #DEF1f2;
+  padding: 5%;
+  width: 80%;
+}
+
+
+@media screen and (max-width:600px){
+  .formcreate{
+    margin-top: 75px;
+  }
+  .create{
+    color: #060930;
+    text-align: center;
+  }
+  .update{
+    color: #060930;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width:1000px){
+  .formcreate{
+    margin-top: 55px;
+    font-family: 'Quicksand', 'sans-serif';
+  }
+  .create{
+    color: #060930;
+    text-align: center;
+    /* display: none; */
+  }
+}

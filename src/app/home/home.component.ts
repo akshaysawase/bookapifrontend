@@ -19,7 +19,17 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  public show = false;
   ngOnInit(): void {
+    let state = localStorage.getItem('logout');
+    if(state == 'true'){
+      this.show = true;
+      localStorage.setItem('logout','false');
+    }else{
+      this.show = false;
+    }
+
   }
+
 
 }

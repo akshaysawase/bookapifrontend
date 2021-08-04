@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
 import { Router } from "@angular/router";
+import {ToastrService} from 'ngx-toastr'
+import { AlertService } from '../alert/alert.service';
+import { Alert, AlertType, PositiionType } from'../alert/alert.model';
+
+
 
 @Component({
   selector: 'app-app-header',
@@ -9,9 +14,10 @@ import { Router } from "@angular/router";
 })
 export class AppHeaderComponent implements OnInit {
 
-  constructor( private api : ApiserviceService, private router : Router  ) { }
+  constructor( private api : ApiserviceService, private router : Router, public toastr: ToastrService,  private alertservice : AlertService  ) { }
 
   successMsg = "";
+  Position = PositiionType;
   errorMsg = "";
   state : boolean;
   username : string = '';
@@ -53,10 +59,16 @@ export class AppHeaderComponent implements OnInit {
       // )
       window.location.reload();
   }
+  public show = false;
+  test(){
+    this.show = true;
+  }
 
   logout(){
     this.api.logout();
-    alert("You're Logged Out Successfully !");
+    // alert("You're Logged Out Successfully !");
+    this.show = true;
+    this.router.navigate(["/"]);
   }
 
 }

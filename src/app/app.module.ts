@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +16,10 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { CreateContactComponent } from './create-contact/create-contact.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
-// import { AlertComponent } from './alert/alert.component';
+
+
 import { AlertModule } from './alert/alert.module';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,7 @@ import { AlertModule } from './alert/alert.module';
     AppHeaderComponent,
     CreateContactComponent,
     ErrorMsgComponent,
+    FilterPipe,
     // AlertComponent
   ],
   imports: [
@@ -34,9 +40,11 @@ import { AlertModule } from './alert/alert.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AlertModule
+    AlertModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({ timeOut: 2000, enableHtml: true }),
   ],
-  providers: [],
+  providers: [ToastrService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

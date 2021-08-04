@@ -10,7 +10,7 @@ export class FilterPipe implements PipeTransform {
     if(!text) return array;
     text = text.toLowerCase();
     return array.filter((e1)=>{
-      return e1.toLowerCase().includes(text)
+      return e1.name.toLowerCase().includes(text)
     });
   }
 
