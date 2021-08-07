@@ -27,6 +27,7 @@ export class ContactListComponent implements OnInit {
   public searchText: string = '';
   public contact:Array<any> = [];
   public rowSingle: Array<any> = [];
+  public show : boolean = false;
 
   successMsg = "";
   notFound:boolean = false;
@@ -69,6 +70,21 @@ export class ContactListComponent implements OnInit {
         window.location.reload();
       },500);
 
+  }
+  public deleteid;
+  delete(delid){
+      this.deleteid = delid;
+      console.log(this.deleteid)
+  }
+
+  showModal(event){
+    this.show = !this.show;
+  }
+
+  confirmDelete(){
+    if(this.deleteid){
+      this.deleteContact(this.deleteid);
+    }
   }
 
 

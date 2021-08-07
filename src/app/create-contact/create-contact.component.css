@@ -31,4 +31,8 @@
     text-align: center;
     /* display: none; */
   }
+  .update{
+    color: #060930;
+    text-align:center;
+  }
 }
