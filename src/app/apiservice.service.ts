@@ -26,6 +26,15 @@ export class ApiserviceService {
     }
     return headers;
 }
+// public downloadHeaders():HttpHeaders {
+//   let headers = new HttpHeaders();
+//   // let token = localStorage.getItem("token");
+//   headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+//   if (token !== null) {
+//       headers = headers.append("Authorization", token);
+//   }
+//   return headers;
+// }
 
   getContactList() : Observable<any>{
    return this.http.get<Contactmodel[]>(this.endPoint+"getAllContact", {headers : this.getHeaders()});
@@ -73,6 +82,21 @@ export class ApiserviceService {
   updateContact(data) : Observable<any>{
     return this.http.post(this.endPoint+"update",data, {headers : this.getHeaders()});
     // return this.http.post("http://localhost:3000/contact/update",data, {headers : this.getHeaders()});
+  }
+
+  checkPassword( data ) : Observable<any>{
+    return this.http.post(this.endPoint+"checkpass",data, {headers : this.getHeaders()});
+  }
+
+  changePassword( data ): Observable<any>{
+    return this.http.post(this.endPoint+"changepass",data, {headers : this.getHeaders()});
+  }
+
+  getCsv(data):Observable<any>{
+    return this.http.get(this.endPoint+"downloadCsv/?id="+data, {
+      observe: 'response',
+      responseType: 'blob'
+    }, );
   }
 
   getAllCountry() {

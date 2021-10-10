@@ -93,10 +93,87 @@
           <!-- <li><a class="dropdown-item" (click)="logout()" > Logout &nbsp; &nbsp; <span> {{username}} </span> </a></li> -->
         </li>
         <li class="nav-item rounded navli">
-          <a class="nav-link" (click)="logout()" > Logout &nbsp; <span> {{username}} </span> </a>
+          <!-- <a class="nav-link" (click)="logout()" > Logout &nbsp; <span> {{username}} </span> </a> -->
+          <div class="dropdown" style="width: 7rem; text-align: center;" >
+            <a class="btn btn-secondary nav-item dropdown-toggle navbarcls" style="border: none;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              {{username}}
+            </a>
+            <ul class="dropdown-menu" style="font-size: 14px; cursor: pointer; color:#DEF1f2; background-color: black;" aria-labelledby="dropdownMenuLink">
+              <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showCurrent()">
+                Change Password
+              </a></li>
+              <li><a class="nav-link" (click)="downloadCsv()" > Export .CSV File </a></li>
+              <li><a class="nav-link" (click)="logout()" > Logout <span>{{username}}</span> </a></li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="changePass">
+          <div class="row">
+
+            <div class="col-md-12" *ngIf="hideCurrent">
+              <div class="form-group">
+                <label for="first">Current Password</label>
+                <input type="password" class="form-control" formControlName="currentPass" >
+                <div class="text-danger" *ngIf="changePass.controls.currentPass.invalid && (changePass.controls.currentPass.dirty || changePass.controls.currentPass.touched)">
+                  <div *ngIf="changePass.controls.currentPass.errors.required">
+                    Please Enter Current Password
+                </div>
+                </div>
+                <p *ngIf="wrongPass" class="text-danger">{{errorMsg}}</p>
+              </div>
+            </div>
+
+            <div class="col-md-12" *ngIf="isChangePass">
+              <div class="form-group">
+                <label for="last">New Password</label>
+                <input type="password" class="form-control" formControlName="newPass" id="emailid">
+                <div class="text-danger" *ngIf="changePass.controls.newPass.invalid && (changePass.controls.newPass.dirty || changePass.controls.newPass.touched)">
+                  <div *ngIf="changePass.controls.newPass.errors.required">
+                    Please Enter New Password
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12" *ngIf="isChangePass">
+              <div class="form-group">
+                <label for="last">Confirm New Password</label>
+                <input type="password" class="form-control" formControlName="confirmNewPass" id="mobile">
+              </div>
+              <p *ngIf="wrongPass2" class="text-danger">{{errorMsg}}</p>
+              <p *ngIf="done" class="text-success">{{successMsg}}</p>
+            </div>
+
+            <div class="col-md-6" *ngIf="isChangePass">
+              <div class="form-group">
+                <button type="submit" class="btn btn-success" (click)="onSubmit()" >Change</button>
+              </div>
+            </div>
+
+            <div class="col-md-6" *ngIf="hideCurrent">
+              <div class="form-group">
+                <button type="submit" class="btn btn-success" (click)="continueForPass()" >Continue</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
 </div>

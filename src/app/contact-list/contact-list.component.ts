@@ -2,6 +2,8 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA , NgZone} from '@angular/core
 import { Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import {ToastrService} from 'ngx-toastr';
+import { saveAs } from 'file-saver';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -97,6 +99,10 @@ export class ContactListComponent implements OnInit {
   }
 
 
+
+
+
+
   // Annyang
   initializeVoiceRecognitionCallback(): void {
 		annyang.addCallback('error', (err) => {
@@ -129,6 +135,17 @@ export class ContactListComponent implements OnInit {
 			annyang.abort();
 
       this.voiceText = queryText;
+
+      if(this.voiceText == "download csv"){
+        let id = localStorage.getItem("id");
+        let username = localStorage.getItem("username");
+        this.api.getCsv(id).subscribe( (res)=>{
+          const blob = new Blob([res.body], { type : "text/csv" });
+          saveAs(blob, `${username}ContactBook.csv`);
+        }, (err)=>{
+          console.log(err);
+        })
+      }
 
 			this.ngZone.run(() => this.voiceActiveSectionListening = false);
       this.ngZone.run(() => this.voiceActiveSectionSuccess = true);

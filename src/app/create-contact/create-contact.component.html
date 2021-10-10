@@ -1,7 +1,19 @@
-
+<!--  -->
 <app-app-header></app-app-header>
-<h3 style=" margin-top:100px;" *ngIf= "enableEdit" class="update">Update Contact</h3>
-<h3 style=" margin-top:100px;" *ngIf= "!enableEdit" class="create">New Contact</h3>
+<div class="alert alert-success" *ngIf="showalert" style="z-index: 999;margin-top: 60px; ">
+  <a href="/createContact" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Contact Created Successfully !
+</div>
+<div class="alert alert-success" *ngIf="updateStatus" style="z-index: 999;margin-top: 60px; ">
+  <a href="/contactlist" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Contact Updated Successfully ! !
+</div>
+<div class="alert alert-danger" *ngIf="errorStatus" style="z-index: 999;margin-top: 60px; ">
+  <a href="/createContact" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Failed!</strong> Please Enter Valid Contact Details
+</div>
+<h3 style=" margin-top:30px;" *ngIf= "enableEdit" class="update">Update Contact</h3>
+<h3 style=" margin-top:30px;" *ngIf= "!enableEdit" class="create">New Contact</h3>
 
 
 <div class="container formcreate">

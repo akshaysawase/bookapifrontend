@@ -34,10 +34,10 @@
                         <p class="card-text" style=" font-family: 'Quicksand', sans-serif; font-size: 22px;"> <span><img src="../../assets/img/phone.png" alt="" data-toggle="tooltip" title="Mobile " width="16" height="16"></span> &nbsp;&nbsp; {{x.mobile}} </p>
                         <p class="card-text" style=" font-family: 'Quicksand', sans-serif;"><span><img src="../../assets/img/google-maps.png" data-toggle="tooltip" title="Location" alt="" width="16" height="16"></span> &nbsp;&nbsp;&nbsp; {{x.country}} </p>
 
-                        <img src="../../assets/img/trash-bin.png" width="22" height="22" data-toggle="modal" data-target="#delete" alt="" title="Delete Contact" (click)="delete(x.id)" >
+                        <img src="../../assets/img/trash-bin.png" width="22" height="22" data-toggle="modal" data-target="#delete" style="cursor:pointer;" alt="" title="Delete Contact" (click)="delete(x.id)" >
                         <!-- (click)="showDelete(delete) -->
                         &nbsp;&nbsp;&nbsp;
-                        <img src="../../assets/img/edit.png" width="22" height="22" alt="" data-toggle="tooltip" title="Edit Contact" (click)="getContact(x.id)">
+                        <img src="../../assets/img/edit.png" width="22" height="22" alt="" data-toggle="tooltip" style="cursor:pointer;" title="Edit Contact" (click)="getContact(x.id)">
                     </div>
                 </div>
             </div>

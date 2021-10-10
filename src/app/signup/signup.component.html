@@ -35,6 +35,10 @@
   <a href="/signup" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Failed!</strong> Password and Confirm Password Does Not Match
 </div>
+<div class="alert alert-danger" *ngIf="errortxt" style="z-index: 999; margin-top: 40px;">
+  <a href="/signup" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Failed!</strong> {{errtext}}
+</div>
 <div class="alert alert-danger" *ngIf="invalid" style="z-index: 999; margin-top: 40px;">
   <a href="/signup" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Failed!</strong> Please Fill Up Required Field !

@@ -20,6 +20,8 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 import { AlertModule } from './alert/alert.module';
 import { FilterPipe } from './filter.pipe';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
+import { ChangePassComponent } from './change-pass/change-pass.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { FilterPipe } from './filter.pipe';
     CreateContactComponent,
     ErrorMsgComponent,
     FilterPipe,
+    ForgetPassComponent,
+    ChangePassComponent,
     // AlertComponent
   ],
   imports: [

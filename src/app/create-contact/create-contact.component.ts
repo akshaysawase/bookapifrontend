@@ -19,6 +19,8 @@ export class CreateContactComponent implements OnInit {
   enableUpdate = false;
   countryName = [];
   updateCountry;
+  showalert = false;
+  updateStatus = false;
 
   conid : number =0;
   enableEdit : boolean =false ;
@@ -75,7 +77,10 @@ export class CreateContactComponent implements OnInit {
 
     if(this.addContact.invalid || this.f.country.value == null){
       console.log("Form Is Invalid..");
-      alert("Please Enter Valid Contact Details");
+      this.errorStatus = true;
+      setTimeout( ()=>{
+        this.errorStatus = false;
+      },3000 )
       return false;
     }
 
@@ -95,7 +100,10 @@ export class CreateContactComponent implements OnInit {
     this.api.createContact(contact).subscribe(
       res =>{
         this.successMsg = res.message;
-        alert("Contact Saved Successfully !");
+        this.showalert = true;
+        setTimeout( ()=>{
+          this.showalert = false;
+        },3000 )
       },
       err =>{
         console.log("Error in CreateContact "+err);
@@ -112,14 +120,15 @@ export class CreateContactComponent implements OnInit {
   }
 
 
-
+  errorStatus = false;
 
 
   onUpdate(){
 
     if(this.addContact.invalid || this.f.country.value==null){
       console.log("Form Is Invalid..");
-      alert("Please Enter Valid Contact Details");
+      this.errorStatus = true;
+
       return;
     }
 
@@ -136,7 +145,12 @@ export class CreateContactComponent implements OnInit {
     this.api.updateContact(contact).subscribe(
       res =>{
         console.log("Update Message - "+res.message);
-        alert("Contact Updated Successfully !");
+
+        this.updateStatus = true;
+        setTimeout( ()=>{
+          this.updateStatus = false;
+        },3000)
+
         if(res.message){
           this.api.getSingleContact(this.conid).subscribe(
             res =>{

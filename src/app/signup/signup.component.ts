@@ -19,6 +19,8 @@ export class SignupComponent implements OnInit {
   public show = false;
   public error = false;
   public invalid = false;
+  errtext = "";
+  errortxt : boolean = false;
 
   ngOnInit(): void {
     this.signUpForm = this.formbuilder.group({
@@ -62,10 +64,19 @@ export class SignupComponent implements OnInit {
     console.log(signUp);
 
   this.api.signUp(signUp).subscribe(res=>{
-      this.success = res.success;
-      this.show = true;
+      // this.success = res.success;
+      if(res.errmsg){
+          this.errtext = res.errmsg;
+          this.errortxt = true;
+      }else if(res.message == "You're Registered Successfully ! Please log in.."){
+        this.success = res.success;
+        this.show = true;
+      }
+
   },(err)=>{
-    console.log("Error In OnSubmit "+err);
+    // console.log("Error In OnSubmit "+err.error.ErrorResponse.message);
+    console.log(err);
+    console.log(Object.getOwnPropertyNames(err));
   }
   );
     this.signUpForm.reset();
